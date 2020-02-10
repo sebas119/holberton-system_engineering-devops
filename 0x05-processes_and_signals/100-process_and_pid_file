@@ -1,1 +1,29 @@
 #!/usr/bin/env bash
+# Bash script that displays To infinity and beyond indefinitely and print I hate the kill command when receiving a SIGTERM signal.
+
+function sign_int {
+    echo "Y U no love me?!"
+    exit 1
+}
+
+function sign_quit {
+    rm /var/run/holbertonscript.pid
+    exit 1
+}
+
+function sign_term {
+    echo "I hate the kill command"
+    rm /var/run/holbertonscript.pid
+    exit 1
+}
+
+echo $$ > /var/run/holbertonscript.pid
+
+while :
+do
+	echo "To infinity and beyond"
+    trap sign_term SIGTERM
+    trap sign_int SIGINT
+    trap sign_quit SIGQUIT
+	sleep 2
+done
