@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Script that shows listening sockets and the PID and the name to wich socket belongs
 
-sudo netstat -p -l
+netstat -p -l
