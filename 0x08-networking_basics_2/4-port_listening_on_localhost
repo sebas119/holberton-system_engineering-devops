@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Server mode that listen to the port 80
+
+nc -l localhost 98
