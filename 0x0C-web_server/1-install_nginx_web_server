@@ -3,14 +3,12 @@
 
 # Requirements:
 
-# Install nginx on your web server
+# Install nginx on your web server ubuntu 16.04
 # Nginx should be listening on port 80
 # When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Holberton School
-sudo apt-get update
-sudo apt-get install nginx -y
+apt-get update
+apt-get install nginx -y
 # This profile opens only port 80 (normal, unencrypted web traffic)
-sudo ufw allow 'Nginx HTTP'
-sudo chgrp -R ubuntu /usr/share/nginx/html
-sudo chmod -R g+w /usr/share/nginx/html
-sudo echo 'Holberton School' | sudo tee /usr/share/nginx/html/index.html
-sudo service nginx start
+ufw allow 'Nginx HTTP'
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+service nginx start
