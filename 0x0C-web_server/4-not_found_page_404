@@ -1,1 +1,29 @@
 #!/usr/bin/env bash
+# Nginx installation script
+
+# Requirements:
+
+# Install nginx on your web server
+# Nginx should be listening on port 80
+# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Holberton School
+apt-get update
+apt-get install nginx -y
+# This profile opens only port 80 (normal, unencrypted web traffic)
+ufw allow 'Nginx HTTP'
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+}" > /etc/nginx/sites-available/default
+service nginx start
