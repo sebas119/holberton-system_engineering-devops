@@ -8,13 +8,9 @@
 # When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Holberton School
 sudo apt-get update
 sudo apt-get install nginx -y
+# This profile opens only port 80 (normal, unencrypted web traffic)
+sudo ufw allow 'Nginx HTTP'
 sudo chgrp -R ubuntu /usr/share/nginx/html
 sudo chmod -R g+w /usr/share/nginx/html
-sudo echo "Holberton School" > /usr/share/nginx/html/index.html
-printf %s "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html index.htm;
-}" > /etc/nginx/sites-available/default
-sudo service nginx restart
+sudo echo 'Holberton School' | sudo tee /usr/share/nginx/html/index.html
+sudo service nginx start
