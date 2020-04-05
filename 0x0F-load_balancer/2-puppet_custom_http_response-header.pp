@@ -13,7 +13,7 @@ file_line { 'customHeader':
   ensure  => present,
   path    => '/etc/nginx/sites-available/default',
   after   => ':80 default_server;',
-  line    => "add_header X-Served-By ${HOSTNAME};",
+  line    => "add_header X-Served-By ${hostname};",
   require => Package['nginx'],
 }
 
