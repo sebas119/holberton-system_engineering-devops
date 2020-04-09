@@ -1,1 +1,27 @@
 #!/usr/bin/env bash
+# Bash script must accept 2 arguments:
+# domain:
+#   type: string
+#   what: domain name to audit
+#   mandatory: yes
+# subdomain:
+#   type: string
+#   what: specific subdomain to audit
+#   mandatory: no
+
+dig_ip()
+{
+    ip_line=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1)
+    echo "$ip_line $2" | awk '{ print "The subdomain " $6 " is a " $4 " record and points to " $5 }'
+}
+
+if [ "$#" -eq 1 ]
+then
+    dig_ip $1 "www"
+    dig_ip $1 "lb-01"
+    dig_ip $1 "web-01"
+    dig_ip $1 "web-02"
+elif [ "$#" -gt 1 ]
+then
+    dig_ip $1 $2
+fi
