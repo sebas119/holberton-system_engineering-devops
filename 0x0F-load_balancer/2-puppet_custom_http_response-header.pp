@@ -4,9 +4,11 @@ exec { 'update_ppa':
   provider => shell,
 }
 
-package { 'nginx':
-  ensure  => installed,
-  require => Exec['update_ppa'],
+package { 'Install nginx':
+  ensure   => installed,
+  name     => 'nginx',
+  provider => apt,
+  require  => Exec['update_ppa'],
 }
 
 file_line { 'customHeader':
@@ -17,7 +19,7 @@ file_line { 'customHeader':
   require => Package['nginx'],
 }
 
-service { 'nginx server':
-  ensure  => running,
+service { 'nginx':
+  ensure  => true,
   require => File_line['customHeader'],
 }
