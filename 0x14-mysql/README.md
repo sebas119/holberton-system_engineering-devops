@@ -19,5 +19,11 @@ What you should learn from this project:
 ---
 ---
 
+### Install MySQL 5.7 on Ubuntu 16.04 LTS
+
+    sudo apt update -y
+    sudo apt install mysql-server-5.7 -y
+
+
 ## Author
 * **Sebastian Lopez Herrera** - [sebas119](https://github.com/sebas119)
