@@ -14,14 +14,14 @@ if __name__ == "__main__":
 
     data_user_todo = req_user_todo.json()
     data_user_info = req_user_info.json()
-    name = data_user_info.get("name")
+    username = data_user_info.get("username")
 
     csv_list = []
     for todo in data_user_todo:
         completed = todo.get("completed")
         title = todo.get("title")
         new = '"{}","{}","{}","{}"'.format(
-            user_id, name, str(completed), title)
+            user_id, username, str(completed), title)
         csv_list.append(new)
 
     with open("{}.csv".format(user_id), mode='wt', encoding='utf-8') as f:
