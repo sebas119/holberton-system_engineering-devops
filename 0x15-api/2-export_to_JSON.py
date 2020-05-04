@@ -28,5 +28,5 @@ if __name__ == "__main__":
 
     data.update({user_id: tasks})
 
-    with open("{}.js".format(user_id), mode='wt', encoding='utf-8') as f:
+    with open("{}.json".format(user_id), mode='wt', encoding='utf-8') as f:
         json.dump(data, f)
