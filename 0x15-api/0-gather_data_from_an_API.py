@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-"""Gather data from an API and return information about his/her TODO list progress."""
+"""Gather data from an API and return information
+about his/her TODO list progress."""
 
 if __name__ == "__main__":
     import requests
@@ -19,11 +20,11 @@ if __name__ == "__main__":
     total_task = 0
     todo_task = 0
     for todo in data_user_todo:
-        if todo.get("completed") is False:
+        if todo.get("completed") is True:
             todo_task += 1
             todo_title.append(todo.get("title"))
         total_task += 1
 
     print("Employee {} is done with tasks({}/{}):".format(
         data_user_info.get("name"), todo_task, total_task))
-    [print("\t{}".format(todo)) for todo in todo_title]
+    [print("\t {}".format(todo)) for todo in todo_title]
