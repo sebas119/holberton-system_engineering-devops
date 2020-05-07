@@ -23,7 +23,7 @@ def count_words(subreddit, word_list, after='', words_counting={}):
         for child in children_list:
             title = child.get('data').get('title')
             for word in word_list:
-                ocurrences = title.lower().count(word.lower())
+                ocurrences = title.lower().split().count(word.lower())
                 if ocurrences > 0:
                     if word in words_counting:
                         words_counting[word] += ocurrences
@@ -39,8 +39,6 @@ def count_words(subreddit, word_list, after='', words_counting={}):
                 for key, value in iterator:
                     print('{}: {}'.format(key, value))
             else:
-                print()
                 return
     else:
-        print()
         return
